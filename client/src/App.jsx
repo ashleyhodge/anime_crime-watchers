@@ -3,12 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Analytics from './components/Analytics';
-import Group from './components/Group';
 import Footer from './components/Footer/index';
-import Hero from './components/Hero';
 import Navbar from './components/Navbar';
-import Blog from './components/BlogPosts';
 import Signup  from "./pages/Signup";
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -19,7 +15,7 @@ import SingleBlogPost from "./pages/SingleBlogPost";
 import Profile from "./pages/Profile"
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -41,7 +37,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <Router>
+        <Router basename="/">
           <main>
             <Navbar />
             <Routes>
