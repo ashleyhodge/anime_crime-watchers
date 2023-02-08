@@ -21,6 +21,10 @@ The purpose of this application is to report and alert others to crime in your a
   <li>Database: <b> MongoDB, Mongoose </b> </li>
 </ul>
 
+## Test it out
+
+[https://anime-crime-watchers.vercel.app/](https://anime-crime-watchers.vercel.app/)
+
 ## Installation
 
 You will need `node` and `npm` to install and run this project.
