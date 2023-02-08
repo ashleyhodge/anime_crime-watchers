@@ -1,9 +1,10 @@
 const path = require('path');
 const express = require('express');
 const { authMiddleware } = require('./utils/auth');
+const dotenv = require('dotenv');
+dotenv.config();
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
-
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -27,14 +28,15 @@ await server.start();
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
-// Serve up static assets
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+  // Serve up static assets
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client', 'build')));
+  }
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client', 'build', 'index.js'));
+  });
 
 db.once('open', () => {
     app.listen(PORT, () => {
